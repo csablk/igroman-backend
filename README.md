@@ -1,0 +1,1 @@
+Game and application account store. There is no purchase option in the store, this is a portfolio project. Stack: express.js, react.js | Магазин аккаунтов игр и приложений. В магазине нет возможности покупки, это проект для портфолио. Стэк: express.js, react.js
