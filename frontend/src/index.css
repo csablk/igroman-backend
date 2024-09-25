@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+    background: rgb(59 130 246);
+
+    height: 100vh;
+}
+
+input{
+    width: 80%;
+    text-align: center;
+    background-color: inherit;
+    user-focus: none;
+    color:black;
+    padding:10px 20px;
+    border:none;
+}
+
+.products-container{
+    background: rgb(59 130 246);
+    color:white;
+}
+
+.cursor {
+    display: inline-block;
+    width: 10px;
+    background-color: white;
+    color:white;
+    animation: blink 0.8s step-end infinite; /* Анимация мигания */
+}
+
+@keyframes blink {
+    50% {
+        background-color: transparent;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.bounce {
+    animation: bounce 3s infinite;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.80;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 2s ease-in-out;
+}
+
+
+@media(max-width: 710px){
+    .product-image{
+        width: 500px;
+    }
+    .product-item h2{
+        font-size: 25px
+    }
+}
+
+@media(max-width: 535px){
+    .product-image{
+        width: 350px;
+    }
+    .product-item h2{
+        font-size: 25px
+    }
+}
+
+@media(max-width: 370px){
+    .product-image{
+        width: 300px;
+    }
+    .product-item h2{
+        font-size: 20px
+    }
+}
+
+@media(max-width: 325px){
+    .product-image{
+        width: 250px;
+    }
+    .product-item h2{
+        font-size: 21px
+    }
+}
+
+@media(max-width: 275px){
+    .product-image{
+        width: 200px;
+    }
+    .product-item h2{
+        font-size: 18px
+    }
+}
