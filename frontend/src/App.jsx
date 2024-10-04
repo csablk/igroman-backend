@@ -6,6 +6,9 @@ import { Toaster } from "react-hot-toast";
 import Auth from "./pages/Auth.jsx";
 import Product from "./pages/Product.jsx";
 import { UserProvider } from "./context/UserContext.jsx";
+import ProtectedRouter from "./ProtectedRoute.jsx";
+import Admin from "./pages/Admin.jsx";
+import ProtectedRouteLogin from "./ProtectedRouteLogin.jsx";
 
 function App() {
   return (
@@ -15,8 +18,24 @@ function App() {
         <div className="mx-auto mt-20 flex justify-center">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Auth />} />
+            <Route
+              path="/login"
+              element={
+                <ProtectedRouteLogin>
+                  <Auth />
+                </ProtectedRouteLogin>
+              }
+            />{" "}
             <Route path="/product/:id" element={<Product />} />
+            {/*PROTECT*/}
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRouter role="ADMIN">
+                  <Admin />
+                </ProtectedRouter>
+              }
+            />
           </Routes>
         </div>
       </UserProvider>

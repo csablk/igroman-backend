@@ -4,27 +4,32 @@ import ProductModel from "../../models/product.model.js";
 export const createProduct = async (req, res) => {
   const errors = validationResult(req);
 
+  // Проверка на ошибки валидации
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { title, text, category } = req.body;
+  const { title, text, category, price } = req.body;
   const userId = req.userId;
 
-  const image = req.file ? `/images/${req.file.filename}` : null;
+  // Загрузка галереи изображений
+  const images = req.files.images
+    ? req.files.images.map((file) => `/images/${file.filename}`)
+    : [];
 
   try {
     const product = new ProductModel({
       title,
       text,
       category,
-      image,
+      images,
+      price,
       user: userId,
     });
     await product.save();
-    res.status(201).json({ message: "Successfully created" });
+    res.status(201).json({ message: "Product created successfully" });
   } catch (error) {
-    res.status(500).json({ error: "Ошибка на сервере" });
-    console.log(error);
+    console.error("Error creating product:", error);
+    res.status(500).json({ error: "Server error" });
   }
 };

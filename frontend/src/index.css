@@ -4,7 +4,7 @@
 
 
 body{
-    background: rgb(59 130 246);
+    background: rgb(34 197 94);
 
     height: 100vh;
 }
@@ -20,7 +20,7 @@ input{
 }
 
 .products-container{
-    background: rgb(59 130 246);
+    background: rgb(34 197 94);
     color:white;
 }
 

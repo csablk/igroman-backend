@@ -13,6 +13,11 @@ const Header = () => {
       <nav>
         {isAuthenticated ? (
           <div className="flex items-center gap-4">
+            {user.role === "ADMIN" && (
+              <p className="cursor-pointer">
+                <Link to="/admin">Админ панель</Link>
+              </p>
+            )}
             <p className="cursor-pointer">
               <Link to="/profile">Профиль</Link>
             </p>

@@ -6,6 +6,7 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Добавляем состояние загрузки
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -15,11 +16,15 @@ export const UserProvider = ({ children }) => {
         .then((userData) => {
           setUser(userData);
           setIsAuthenticated(true);
+          setIsLoading(false); 
         })
         .catch((error) => {
           console.error("Ошибка при получении профиля:", error);
           logout();
+          setIsLoading(false); 
         });
+    } else {
+      setIsLoading(false); 
     }
   }, []);
 
@@ -35,7 +40,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, isAuthenticated, loginUser, logout }}>
+    <UserContext.Provider value={{ user, isAuthenticated, isLoading, loginUser, logout }}>
       {children}
     </UserContext.Provider>
   );

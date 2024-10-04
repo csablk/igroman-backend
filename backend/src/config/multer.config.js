@@ -15,7 +15,7 @@ if (!fs.existsSync(imagesDir)) {
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    if (file.fieldname === "image") {
+    if (file.fieldname === "images") {
       cb(null, imagesDir);
     } else {
       cb(new Error("Invalid field name"), false);
@@ -35,4 +35,6 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-export const uploadImage = multer({ storage, fileFilter }).single("image");
+export const uploadImage = multer({ storage, fileFilter }).fields([
+  { name: "images", maxCount: 10 },
+]);

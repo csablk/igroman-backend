@@ -10,8 +10,14 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    image: {
-      type: String,
+    images: {
+      type: [String],
+      default: [],
+    },
+    price: {
+      // Исправлено имя поля
+      type: Number,
+      min: 0,
       required: true,
     },
     category: {

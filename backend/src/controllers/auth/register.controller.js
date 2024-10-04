@@ -11,8 +11,8 @@ export const register = async (req, res) => {
   }
 
   try {
-    const existinsUser = await UserModel.findOne({ email });
-    if (existinsUser) {
+    const existUser = await UserModel.findOne({ email });
+    if (existUser) {
       return res
         .status(400)
         .json({ error: "Пользователь с такой почтой уже существует" });

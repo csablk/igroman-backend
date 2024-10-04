@@ -5,6 +5,7 @@ export const getAllProducts = async (req, res) => {
 
   try {
     const products = await ProductModel.find()
+      .sort({ createdAt: -1 })
       .skip((page - 1) * limit)
       .limit(limit);
 

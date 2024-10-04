@@ -6,7 +6,7 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const productsPerPage = 3;
+  const productsPerPage = 6;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -51,11 +51,14 @@ const Products = () => {
               key={product._id}
               className="bg-white text-black shadow-black hover:shadow-2xl hover:transition transition cursor-pointer rounded-3xl w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
             >
-              <img
-                src={`http://localhost:8000/${product.image}`}
-                className="h-auto w-full rounded-t-2xl"
-                alt="image"
-              />
+              {/* Используем первое изображение из массива images */}
+              {product.images.length > 0 && (
+                <img
+                  src={`http://localhost:8000/${product.images[0]}`} // Обновлено для использования первого изображения
+                  className="h-auto w-full rounded-t-2xl"
+                  alt="image"
+                />
+              )}
               <div className="p-4">
                 <h2 className="text-lg font-bold mb-2">{product.title}</h2>
                 <p className="text-sm mb-2">{truncateText(product.text, 50)}</p>
@@ -73,7 +76,7 @@ const Products = () => {
           className={`mx-2 px-4 py-2 rounded ${
             currentPage === 1
               ? "bg-gray-300"
-              : "bg-blue-500 hover:bg-blue-700 transition hover:transition text-white"
+              : "bg-green-400 hover:bg-green-600 transition hover:transition text-white"
           }`}
           disabled={currentPage === 1}
         >
@@ -84,7 +87,7 @@ const Products = () => {
           className={`mx-2 px-4 py-2 rounded ${
             currentPage === totalPages
               ? "bg-gray-300"
-              : "bg-blue-500 hover:bg-blue-700 transition hover:transition text-white"
+              : "bg-green-400 hover:bg-green-600 transition hover:transition text-white"
           }`}
           disabled={currentPage === totalPages}
         >

@@ -11,7 +11,6 @@ export const checkAdminRole = async (req, res, next) => {
     req.userId = decoded.id;
 
     const user = await UserModel.findById(req.userId);
-    console.log(user.role);
     if (!user || user.role !== "ADMIN") {
       return res.status(403).json({ error: "Нет доступа" });
     }
